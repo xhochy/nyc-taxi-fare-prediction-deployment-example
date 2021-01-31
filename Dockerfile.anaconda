@@ -1,0 +1,10 @@
+FROM continuumio/anaconda3:2020.11
+
+COPY . .
+RUN conda env create
+RUN conda run -n nyc-taxi-fare-prediction-deployment-example \
+  python -m pip install --no-deps -e .
+CMD [ \
+  "conda", "run", "-n", "nyc-taxi-fare-prediction-deployment-example", \
+  "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "nyc_taxi_fare.serve:app" \
+]

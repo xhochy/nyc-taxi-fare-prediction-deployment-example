@@ -1,0 +1,19 @@
+name: nyc-taxi-fare-prediction-deployment-example
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - click
+  - fastapi
+  - gunicorn
+  - jupyterlab
+  - jupytext
+  - lightgbm
+  - make
+  - nb_black
+  - pandas
+  - pre-commit
+  - pyarrow
+  - scikit-learn
+  - setuptools_scm
+  - uvicorn
