@@ -1,0 +1,10 @@
+FROM condaforge/mambaforge:4.9.2-5
+
+COPY . .
+RUN mamba env create && conda clean -afy
+RUN conda run -n nyc-taxi-fare-prediction-deployment-example \
+  python -m pip install --no-deps -e .
+CMD [ \
+  "conda", "run", "-n", "nyc-taxi-fare-prediction-deployment-example", \
+  "gunicorn", "-k", "uvicorn.workers.UvicornWorker", "nyc_taxi_fare.serve:app" \
+]
